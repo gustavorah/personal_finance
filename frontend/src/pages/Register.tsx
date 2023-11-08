@@ -1,122 +1,112 @@
 import NavInitial from "../components/navInital";
 import React, { useState } from "react";
 
-function ValidationForm() {
+
+function Register() {
+
   const [dados, setDados] = useState({
     name: "",
     email: "",
     password: "",
   });
-}
+  
+  type Erros = {
+    name?: string;
+    email?: string;
+    password?: string;
+  }
 
-export default function Register() {
+  const [erros, setErros] = useState<Erros>({});
+  
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDados({
+      ...dados,
+      [event.target.name]: event.target.value,
+    });
+  };
+  
+  const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    //setErros(validar(dados));
+  }
+
+  /*const validar = (dados: {name: string; email: string; password: string}) => {
+    
+    let erros: Erros = {};
+
+    if (!dados.name) {
+      erros.name = 'Name is mandatory';
+    }
+
+    if (!dados.email) {
+      erros.email = 'Email is mandatory'
+    } else if (!/\S+@\S+\.\S+/.test(dados.email)) {
+      erros.email = 'Invalid email';
+    }
+
+  return erros;
+  }*/
   return (
     <>
-      <NavInitial />
-      <form className="row g-3 needs-validation" noValidate>
-        <div className="col-md-4">
-          <label htmlFor="validationCustom01" className="form-label">
-            First name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="validationCustom01"
-            value="Mark"
-            required
-          />
-          <div className="valid-feedback">Looks good!</div>
-        </div>
-        <div className="col-md-4">
-          <label htmlFor="validationCustom02" className="form-label">
-            Last name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="validationCustom02"
-            value="Otto"
-            required
-          />
-          <div className="valid-feedback">Looks good!</div>
-        </div>
-        <div className="col-md-4">
-          <label htmlFor="validationCustomUsername" className="form-label">
-            Username
-          </label>
-          <div className="input-group has-validation">
-            <span className="input-group-text" id="inputGroupPrepend">
-              @
-            </span>
-            <input
-              type="text"
-              className="form-control"
-              id="validationCustomUsername"
-              aria-describedby="inputGroupPrepend"
-              required
-            />
-            <div className="invalid-feedback">Please choose a username.</div>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <label htmlFor="validationCustom03" className="form-label">
-            City
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="validationCustom03"
-            required
-          />
-          <div className="invalid-feedback">Please provide a valid city.</div>
-        </div>
-        <div className="col-md-3">
-          <label htmlFor="validationCustom04" className="form-label">
-            State
-          </label>
-          <select className="form-select" id="validationCustom04" required>
-            <option selected disabled value="">
-              Choose...
-            </option>
-            <option>...</option>
-          </select>
-          <div className="invalid-feedback">Please select a valid state.</div>
-        </div>
-        <div className="col-md-3">
-          <label htmlFor="validationCustom05" className="form-label">
-            Zip
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="validationCustom05"
-            required
-          />
-          <div className="invalid-feedback">Please provide a valid zip.</div>
-        </div>
-        <div className="col-12">
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              value=""
-              id="invalidCheck"
-              required
-            />
-            <label className="form-check-label" htmlFor="invalidCheck">
-              Agree to terms and conditions
-            </label>
-            <div className="invalid-feedback">
-              You must agree before submitting.
+    <head>
+      <title>Register</title>
+    </head>
+      <body>
+        <NavInitial />
+
+        <div className="container mt-5">
+        
+          <form className="row g-3 needs-validation" onSubmit={handleSubmit}>
+            <div className="col-md-4">
+              <label htmlFor="validationCustom01" className="form-label">
+                First name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="validationCustom01"
+                required
+              />
             </div>
-          </div>
+            <div className="col-md-4">
+              <label htmlFor="validationCustom02" className="form-label">
+                Password
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                id="validationCustom02"
+                required
+              />
+            </div>
+            
+            
+            <div className="col-md-3">
+              <label htmlFor="validationCustom05" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                id="validationCustom05"
+                required
+              />
+            </div>
+            <div className="col-12">
+              <button className="btn btn-primary" type="submit">
+                Submit form
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="col-12">
-          <button className="btn btn-primary" type="submit">
-            Submit form
-          </button>
-        </div>
-      </form>
+        <p className="p-3 m-3">
+            <a className="link-opacity-100  fs-3" href="/">
+              Home
+            </a>
+          </p>
+      </body>
     </>
   );
 }
+
+export default Register;
