@@ -1,20 +1,20 @@
-import ListGroup from "./components/ListGroup";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+//import Profile from "./Profile";
 
 function App() {
-  let items = ["New York", "San Fransisco", "Tokyo", "London", "Pairs"];
-
-  const handleSelectItem = (item: string) => {
-    console.log(item);
-  };
-
   return (
-    <div>
-      <ListGroup
-        items={items}
-        heading="Cities"
-        onSelectItem={handleSelectItem}
-      />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        {/* <Route path="/profile" element={<Profile />} /> */}
+      </Routes>
+    </Router>
   );
 }
 
