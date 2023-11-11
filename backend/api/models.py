@@ -24,4 +24,4 @@ class Expense(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return f"{self.price} on {self.name} in {self.category}"
+        return f"{self.price} on {self.name} in {self.category.name}"
